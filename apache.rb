@@ -15,7 +15,7 @@ script "apache" do
   sudo rm -rf /mnt/solr1
 
   fi
-  sudo service apache2 restart;
+  sudo service apache2 restart;'
   
 
   puts code1
