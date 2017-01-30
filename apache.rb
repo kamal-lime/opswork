@@ -10,7 +10,7 @@ script "apache" do
   sudo rm /var/cache/jetty/tmp/*;
   sudo rm /mnt/solr/log/jetty/*;
   USED=$(df /dev/xvdf | awk \'{print $5} \'| sed -ne 2p | cut -d"%" -f1)
-  if [ $USED -gt 30 ]
+  if [ $USED -gt 2 ]
   then
   sudo rm -rf /mnt/solr1
 
