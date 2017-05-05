@@ -12,6 +12,7 @@ script "setup" do
   echo Checking for somelib: $PKG_OK
   if [ "" == \"$PKG_OK\" ]; then
   echo \"No somelib. Setting up somelib.\"
+  cd /tmp ;
   curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.3.0-amd64.deb ;
   sudo dpkg -i filebeat-5.3.0-amd64.deb ;
   sudo service filebeat start ;
