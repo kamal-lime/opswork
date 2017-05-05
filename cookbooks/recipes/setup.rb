@@ -8,7 +8,7 @@ script "setup" do
  service = node[:service]
   code1 = ''
   code1 +=  "
-  PKG_OK=dpkg-query -W --showformat='${Status}\n' filebeat|grep \"install ok installed\"
+  PKG_OK=(dpkg-query -W --showformat='${Status}\n' filebeat|grep \"install ok installed\")
   echo Checking for somelib: $PKG_OK
   if [ "" == \"$PKG_OK\" ]; then
   echo \"No somelib. Setting up somelib.\"
