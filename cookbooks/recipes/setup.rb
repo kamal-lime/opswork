@@ -8,13 +8,11 @@ script "setup" do
  service = node[:service]
   code1 = ''
   code1 +=  "
-  PKG_OK=$(dpkg-query -W --showformat='${Status}\n' filebeat|grep \"install ok installed\")
-  echo $PKG_OK
-  if [ "" == \"$PKG_OK\" ]; then
-  cd /tmp ;
-  curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.3.0-amd64.deb ;
-  sudo dpkg -i filebeat-5.3.0-amd64.deb ;
-  sudo service filebeat start ;
+  if [ $(dpkg-query -W -f='${Status}' filebeat 2>/dev/null | grep -c \"ok installed\") -eq 0 ];
+  then
+  curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.3.0-amd64.deb;
+  sudo dpkg -i filebeat-5.3.0-amd64.deb;
+  sudo service filebeat start;
   fi
   "
    puts code1
